@@ -26,6 +26,14 @@
     border-radius: 5px;
   }
 
+  #closeButton {
+    background-color: #8533ff;
+    border-radius: 50px;
+    height: 1.5em;
+    width: 1.5em;
+
+  }
+
 </style>
 
 <body>
@@ -43,7 +51,8 @@
           <div><%= section.title %></div>
           <div><%= link_to 'Show', section %></div>
           <div><%= link_to 'Edit', edit_section_path(section) %></div>
-          <div><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          <div><%= link_to raw("<div id = 'closeButton'>X</div>"), section, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          <!-- <div id = 'closeButton'><div> -->
         </div>
       <% end %>
   </table>
