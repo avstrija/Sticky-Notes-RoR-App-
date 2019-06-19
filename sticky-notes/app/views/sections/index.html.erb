@@ -21,6 +21,7 @@
 
     <% @sections.each do |section| %>
       <div id = "stickyNote">
+        <div><%= section.title %></div>
         <div><%= link_to 'Show', section %></div>
         <div><%= link_to 'Edit', edit_section_path(section) %></div>
         <div><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></div>
