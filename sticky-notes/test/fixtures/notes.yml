@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  due_date: 2019-06-19 16:38:15
+  section: one
+
+two:
+  content: MyText
+  due_date: 2019-06-19 16:38:15
+  section: two
