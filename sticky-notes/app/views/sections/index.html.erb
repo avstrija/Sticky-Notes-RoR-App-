@@ -2,6 +2,16 @@
 
 <h1>Sections</h1>
 
+
+<style>
+  #stickyNote {
+    background-color: #a366ff ;
+    padding: 10px ;
+    margin: 10px;
+    width: 200px;
+  }
+</style>
+
 <table>
   <thead>
     <tr>
@@ -9,15 +19,13 @@
     </tr>
   </thead>
 
-  <tbody>
     <% @sections.each do |section| %>
-      <tr>
-        <td><%= link_to 'Show', section %></td>
-        <td><%= link_to 'Edit', edit_section_path(section) %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div id = "stickyNote">
+        <div><%= link_to 'Show', section %></div>
+        <div><%= link_to 'Edit', edit_section_path(section) %></div>
+        <div><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      </div>
     <% end %>
-  </tbody>
 </table>
 
 <br>
