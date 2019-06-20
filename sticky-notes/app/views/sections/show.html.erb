@@ -1,4 +1,21 @@
 <p id="notice"><%= notice %></p>
+<p>
+  <strong><%= @section.title %></strong>
+</p>
+<h2>Add a Note:</h2>
+<%= form_with(model: [ @section, @section.notes.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </p>
+  <p>
+    <%= form.label :due_date %><br>
+    <%= form.datetime_select :due_date %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
 
-<%= link_to 'Edit', edit_section_path(@section) %> |
+ <%-# link_to 'Edit', edit_section_path(@section) -%>
 <%= link_to 'Back', sections_path %>

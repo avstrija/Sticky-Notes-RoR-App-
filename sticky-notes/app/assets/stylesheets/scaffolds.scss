@@ -1,16 +1,22 @@
 body {
-  background-color: #fff;
-  color: #333;
+  background:
+      linear-gradient(red, transparent),
+      linear-gradient(to top left, lime, transparent),
+      linear-gradient(to top right, blue, transparent);
+  background-blend-mode: screen;
+  background-attachment: fixed;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
   line-height: 18px;
+}
+h1 {
+  text-align: center;
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 14pt;
   line-height: 18px;
+  font-weight:bold;
 }
 
 pre {

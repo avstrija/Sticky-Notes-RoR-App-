@@ -1,65 +1,113 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Your To-Do List</h1>
-
-
+<link href="https://fonts.googleapis.com/css?family=Righteous|Montserrat|Indie+Flower&display=swap" rel="stylesheet">
 
 <style>
-  html {
-    height: 100%
+  #board {
+    display:flex;
+    flex-direction:row;
   }
-
-  body {
-    background:
-        linear-gradient(red, transparent),
-        linear-gradient(to top left, lime, transparent),
-        linear-gradient(to top right, blue, transparent);
-    background-blend-mode: screen;
-  }
-
-  #stickyNote {
+  #section {
+    display: flex;
+    flex-direction:column;
     background-color: #fff ;
     padding: 10px ;
-    margin: 10px;
-    width: 200px;
-    float: left;
+    margin-right: 10px;
+    min-width:15vw;
     border-radius: 5px;
   }
-
+  #section-header {
+    display:flex;
+    flex-direction:row;
+    border-bottom: 3px solid darkblue;
+    line-height:30pt;
+    padding:5px;
+    justify-content: space-between;
+  }
+  #section-title {
+    font-size:13pt;
+    margin-right:5px;
+  }
   #closeButton {
-    background-color: #8533ff;
-    border-radius: 50px;
-    height: 1.5em;
-    width: 1.5em;
+    float:right;
+    background-color: pink;
+    border-radius: 5em;
+    height: 20px;
+    width:20px;
+    text-align:center;
+    outline:none;
+  }
 
+  .card {
+            justify-content: space-around;
+            vertical-align: top;
+            font-family: 'Indie Flower', cursive;
+            font-size: 18pt;
+            font-weight: bold;
+            margin: 5px 5px;
+            padding: 25px;
+            width: 150px;
+            height: 150px;
+            background: #F7E2E1;
+            cursor: move;
+            text-align: left;
+            box-shadow: 2px 2px 2px #707D83;
+            resize: none;
+            overflow: hidden;
+            text-overflow: clip;
+        }
+  .card:hover {
+      box-shadow:10px 10px 7px #707D83);
+      -moz-box-shadow:10px 10px 7px #707D83;
+      -webkit-box-shadow: 10px 10px 7px #707D83;
+      -webkit-transform: scale(1.25);
+      -moz-transform: scale(1.25);
+      -o-transform: scale(1.25);
+      position:relative;
+      z-index:5;
+      -o-transform:rotate(-3deg);
+      -webkit-transform:rotate(-3deg);
+      -moz-transform:rotate(-3deg);
+      top:-5px;
+      background:#F7E9E8;
   }
 
 </style>
 
 <body>
 
+  <p id="notice"><%= notice %></p>
 
-  <table>
-    <thead>
-      <tr>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+  <h1>Your To-Do List</h1>
 
+  <div id="board">
       <% @sections.each do |section| %>
-        <div id = "stickyNote">
-          <div><%= section.title %></div>
-          <div><%= link_to 'Show', section %></div>
-          <div><%= link_to 'Edit', edit_section_path(section) %></div>
-          <div><%= link_to raw("<div id = 'closeButton'>X</div>"), section, method: :delete, data: { confirm: 'Are you sure?' } %></div>
-          <!-- <div id = 'closeButton'><div> -->
+        <div id = "section">
+          <div id = "section-header">
+            <div id="section-title"><%= section.title %></div>
+            <div><%= link_to 'Add Note', section %></div>
+            <div><%= link_to 'Edit', edit_section_path(section) %></div>
+            <div><%= link_to raw("<button id = 'closeButton'>x</button>"), section, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+            <!-- <div id = 'closeButton'><div> -->
+          </div>
+          <% section.notes.each do |note| %>
+            <div class="card">
+              <p>
+                <strong><%= note.content %></strong> 
+              </p>
+              <p>
+                <strong>Due:</strong>
+                <%= note.due_date %>
+              </p>
+              <p>
+                <%= link_to 'Delete', [note.section, note],
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' } %>
+              </p>
+            </div>
+          <% end %>
         </div>
       <% end %>
-  </table>
-
-
+      <%= link_to 'New Section', new_section_path %>
+  </div>
 </body>
 
-<br>
 
-<%= link_to 'New Section', new_section_path %>

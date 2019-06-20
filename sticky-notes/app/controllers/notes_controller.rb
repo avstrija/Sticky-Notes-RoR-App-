@@ -24,17 +24,19 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    @note = Note.new(note_params)
-
-    respond_to do |format|
-      if @note.save
-        format.html { redirect_to @note, notice: 'Note was successfully created.' }
-        format.json { render :show, status: :created, location: @note }
-      else
-        format.html { render :new }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
-      end
-    end
+    # @note = Note.new(note_params)
+    @section = Section.find(params[:section_id])
+    @note = @section.notes.create(note_params)
+    redirect_to sections_path
+    # respond_to do |format|
+    #   if @note.save
+    #     format.html { redirect_to @note, notice: 'Note was successfully created.' }
+    #     format.json { render :show, status: :created, location: @note }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @note.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /notes/1
@@ -56,7 +58,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url, notice: 'Note was successfully destroyed.' }
+      format.html { redirect_to sections_url, notice: 'Party!' }
       format.json { head :no_content }
     end
   end
